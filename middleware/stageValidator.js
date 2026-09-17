@@ -2,7 +2,12 @@ const { isDeepStrictEqual } = require('node:util');
 const { stages } = require('../config/stages');
 
 function normalizePath(path) {
-  return path.split('/').map(segment => decodeURIComponent(segment)).join('/').replace(/\/+$/, '') || '/';
+  return path.split('/').map(segment => {
+    const decoded = decodeURIComponent(segment);
+    // Express decodes ID parameters, but matches static route names literally.
+    // Preserve encoded separators so they cannot create a different route here.
+    return /^\d+$/.test(decoded) ? decoded : segment;
+  }).join('/').replace(/\/$/, '') || '/';
 }
 
 module.exports = function stageValidator(req, res, next) {

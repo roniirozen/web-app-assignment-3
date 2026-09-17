@@ -157,6 +157,21 @@ test('stage comparisons normalize query ordering, encoding, body ordering and tr
   assert.equal((await request('/api/movies/', { stage: 5, method: 'POST', body: reversed })).status, 201);
 });
 
+test('encoded separators, encoded static routes and excess slashes cannot falsely complete stages', async () => {
+  for (const [url, stage] of [
+    ['/api/movies%2F2', 2],
+    ['/api/movies/2%2Freviews', 7],
+    ['/api/%6dovies/2', 2],
+    ['/api/movies/2/%72eviews', 7],
+    ['/api/movies/2///', 2]
+  ]) {
+    const result = await request(url, { stage });
+    assert.equal(result.status, 422, url);
+    assert.equal(result.headers.get('x-stage-correct'), null, url);
+    assert.equal(result.body.stageCorrect, false, url);
+  }
+});
+
 test('a matching PATCH with invalid extra fields cannot complete a stage or mutate data', async () => {
   const result = await request('/api/movies/3', { stage: 6, method: 'PATCH', body: { rating: 9.1, available: false, year: 'invalid' } });
   assert.equal(result.status, 422);
