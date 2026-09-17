@@ -1,0 +1,46 @@
+<%- include('partials/header') %>
+<main id="main" class="game-shell">
+  <section class="intro" aria-labelledby="page-heading">
+    <div><p class="eyebrow">LIGHTS. CAMERA. REQUEST.</p><h1 id="page-heading">Your first API adventure.</h1><p>Build a request. See what happens. Learn the language of the web.</p></div>
+    <button id="reset-button" class="button subtle" type="button" disabled><span aria-hidden="true">↺</span> Reset game</button>
+  </section>
+  <noscript><p class="notice error">JavaScript is needed to send requests and play. The <a href="/schemas">schemas and API reference</a> are available without it.</p></noscript>
+  <div id="storage-notice" class="notice warning" hidden></div>
+  <div id="app-message" class="notice" role="status" hidden></div>
+  <section class="progress-card" aria-label="Game progress">
+    <div class="progress-copy"><span class="eyebrow">YOUR PROGRESS</span><strong id="stage-label">Stage 1 <span>of 12</span></strong></div>
+    <div class="progress-track"><progress id="progress-bar" max="12" value="0" aria-label="Completed stages"></progress><span id="completed-count">0 of 12 completed</span></div>
+    <div class="metric"><span>Score</span><strong><span id="score">0</span><small> / 1200</small></strong></div>
+    <div class="metric"><span>Total attempts</span><strong id="total-attempts">0</strong></div>
+  </section>
+  <div class="workspace">
+    <aside class="journey card" aria-labelledby="journey-heading"><div class="panel-heading"><h2 id="journey-heading">The challenge reel</h2><span class="small-label">12 STAGES</span></div><ol id="stage-list" class="stage-list"><li class="loading-copy">Loading challenges…</li></ol><div class="journey-note"><span aria-hidden="true">✦</span><p>Small steps, real skills.<br><span>Every request tells a story.</span></p></div></aside>
+    <div class="play-area">
+      <section class="challenge-card" aria-labelledby="challenge-title"><div class="challenge-top"><span class="eyebrow" id="challenge-number">CHALLENGE 01</span><span id="challenge-state" class="pill">Ready when you are</span></div><h2 id="challenge-title">Loading your challenge…</h2><p id="challenge-description">Connecting to MovieHub.</p><div class="challenge-bottom"><span id="stage-attempts">0 attempts this stage</span><span id="points-available">100 points available</span></div></section>
+      <section class="card builder" aria-labelledby="builder-heading">
+        <div class="panel-heading"><h2 id="builder-heading"><span class="panel-icon" aria-hidden="true">↗</span> Request builder</h2><span class="small-label">YOUR API WORKBENCH</span></div>
+        <form id="request-form" novalidate>
+          <fieldset id="request-fields" disabled>
+            <legend class="sr-only">Build your HTTP request</legend>
+            <div class="request-line"><div class="method-field"><label for="method">Method</label><select id="method" name="method"><option>GET</option><option>POST</option><option>PATCH</option><option>PUT</option><option>DELETE</option></select></div><div class="path-field"><label for="path">Request path</label><input id="path" name="path" type="text" placeholder="/api/resource/:id" autocomplete="off" spellcheck="false" aria-describedby="path-help" maxlength="2048"></div></div>
+            <p class="field-help" id="path-help">Use a path below <code>/api</code>. Named placeholders are filled from Route Parameters.</p>
+            <div class="parameter-grid">
+              <section class="parameter-section" aria-labelledby="route-heading"><div class="section-heading"><h3 id="route-heading">Route Parameters</h3><button id="add-route" class="text-button" type="button">+ Add row</button></div><div id="route-rows" class="parameter-rows"></div><p class="field-help">Replace a placeholder such as <code>:id</code>.</p></section>
+              <section class="parameter-section" aria-labelledby="query-heading"><div class="section-heading"><h3 id="query-heading">Query Parameters</h3><button id="add-query" class="text-button" type="button">+ Add row</button></div><div id="query-rows" class="parameter-rows"></div><p class="field-help">Filter, search or sort. Values are URL encoded.</p></section>
+            </div>
+            <div class="section-heading body-heading"><label for="request-body">Request body</label><span class="code-label">JSON</span></div>
+            <textarea id="request-body" name="body" rows="6" placeholder="{ }" spellcheck="false" aria-describedby="body-help"></textarea>
+            <p class="field-help" id="body-help">A body is used for POST, PATCH and PUT. Choose one of these methods to edit JSON.</p>
+            <div class="send-row"><span class="field-help">Need the field names? <a href="/schemas" target="_blank" rel="noopener">Open schemas ↗</a></span><button id="send-button" class="button primary" type="submit">Send request <span aria-hidden="true">→</span></button></div>
+          </fieldset>
+        </form>
+      </section>
+      <section class="card response-panel" aria-labelledby="response-heading"><div class="panel-heading"><h2 id="response-heading"><span class="panel-icon" aria-hidden="true">↙</span> Server response</h2><span id="response-status" class="pill neutral">Awaiting request</span></div><div id="response-empty" class="response-empty"><span class="terminal-icon" aria-hidden="true">&gt;_</span><h3>The next move is yours.</h3><p>Send a request to see the URL, HTTP status and response here.</p></div><div id="response-detail" hidden><div class="response-meta"><code id="response-url"></code><span id="response-time"></span></div><p id="response-feedback" class="response-feedback" role="status"></p><pre tabindex="0" aria-label="Response body"><code id="response-body"></code></pre></div></section>
+      <div class="stage-navigation"><button id="previous-button" class="button subtle" type="button" disabled>← Previous stage</button><span id="navigation-note">Complete this challenge to continue.</span><button id="next-button" class="button secondary" type="button" disabled>Next stage →</button></div>
+      <section id="completion" class="completion-card" hidden tabindex="-1"><span class="eyebrow">THAT’S A WRAP</span><h2>You speak HTTP now.</h2><p>You completed all 12 challenges. Your final score: <strong id="final-score"></strong>.</p><p>Revisit your completed stages, explore the API reference, or reset the game for another take.</p></section>
+    </div>
+  </div>
+  <dialog id="reset-dialog" aria-labelledby="reset-title"><form method="dialog"><h2 id="reset-title">Start a fresh take?</h2><p>This clears your saved progress and restores all movies and reviews. The catalog is shared with other browsers connected to this server.</p><div class="dialog-actions"><button class="button subtle" value="cancel">Keep playing</button><button class="button primary" value="reset">Reset everything</button></div></form></dialog>
+</main>
+<script src="/js/game.js" defer></script>
+<%- include('partials/footer') %>

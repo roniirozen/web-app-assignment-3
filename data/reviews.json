@@ -1,0 +1,9 @@
+[
+  { "id": 1, "movieId": 1, "author": "Maya", "score": 5, "comment": "A moving story about hope." },
+  { "id": 2, "movieId": 2, "author": "Sam", "score": 5, "comment": "An unforgettable performance and a gripping story." },
+  { "id": 3, "movieId": 2, "author": "Noa", "score": 4, "comment": "Tense from the first scene to the last." },
+  { "id": 4, "movieId": 3, "author": "Daniel", "score": 5, "comment": "A puzzle that rewards a second viewing." },
+  { "id": 5, "movieId": 4, "author": "Lee", "score": 4, "comment": "Inventive action and striking cinematography." },
+  { "id": 6, "movieId": 6, "author": "Riley", "score": 3, "comment": "Beautiful design, though the story felt distant." },
+  { "id": 7, "movieId": 8, "author": "Ari", "score": 5, "comment": "An imaginative and heartfelt adventure." }
+]

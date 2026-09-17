@@ -1,0 +1,15 @@
+{
+  "name": "moviehub-api-challenge",
+  "version": "1.0.0",
+  "private": true,
+  "description": "An educational HTTP and REST game built with Express, EJS and vanilla JavaScript.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "test": "node --test",
+    "check": "node scripts/check.js"
+  },
+  "engines": { "node": ">=22" },
+  "dependencies": { "ejs": "^3.1.10", "express": "^5.1.0" }
+}

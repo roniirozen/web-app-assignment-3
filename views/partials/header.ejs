@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Learn HTTP and REST by building real requests in the MovieHub API Challenge.">
+  <title><%= title %> · MovieHub</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="MovieHub home"><span class="brand-icon" aria-hidden="true">M<span>▶</span></span><span>MovieHub <small>API CHALLENGE</small></span></a>
+    <nav aria-label="Main navigation">
+      <a href="/" class="<%= typeof page !== 'undefined' && page === 'game' ? 'active' : '' %>" <%- typeof page !== 'undefined' && page === 'game' ? 'aria-current="page"' : '' %>>Playground</a>
+      <a href="/schemas" class="<%= typeof page !== 'undefined' && page === 'schemas' ? 'active' : '' %>" <%- typeof page !== 'undefined' && page === 'schemas' ? 'aria-current="page"' : '' %>>Schemas <span aria-hidden="true">↗</span></a>
+    </nav>
+    <span class="header-note"><span class="status-dot"></span> Learn by requesting</span>
+  </header>

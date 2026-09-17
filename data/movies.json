@@ -1,0 +1,10 @@
+[
+  { "id": 1, "title": "The Shawshank Redemption", "genre": "Drama", "year": 1994, "rating": 9.3, "director": "Frank Darabont", "available": true },
+  { "id": 2, "title": "The Dark Knight", "genre": "Action", "year": 2008, "rating": 9.0, "director": "Christopher Nolan", "available": true },
+  { "id": 3, "title": "Inception", "genre": "Sci-Fi", "year": 2010, "rating": 8.8, "director": "Christopher Nolan", "available": true },
+  { "id": 4, "title": "Mad Max: Fury Road", "genre": "Action", "year": 2015, "rating": 8.1, "director": "George Miller", "available": true },
+  { "id": 5, "title": "Everything Everywhere All at Once", "genre": "Action", "year": 2022, "rating": 7.8, "director": "Daniel Kwan and Daniel Scheinert", "available": false },
+  { "id": 6, "title": "The Grand Budapest Hotel", "genre": "Comedy", "year": 2014, "rating": 8.1, "director": "Wes Anderson", "available": true },
+  { "id": 7, "title": "The Dark Knight Rises", "genre": "Action", "year": 2012, "rating": 8.4, "director": "Christopher Nolan", "available": false },
+  { "id": 8, "title": "Spirited Away", "genre": "Animation", "year": 2001, "rating": 8.6, "director": "Hayao Miyazaki", "available": true }
+]

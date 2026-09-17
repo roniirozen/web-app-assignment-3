@@ -1,0 +1,27 @@
+<%- include('partials/header') %>
+<main id="main" class="reference-shell">
+  <section class="intro"><div><p class="eyebrow">THE BLUEPRINT</p><h1>Know your resources.</h1><p>Two resources, one relationship. Everything you need to build a well-formed request.</p></div><a class="button secondary" href="/">Back to playground →</a></section>
+  <div class="relationship"><span>Movie</span><code>id</code><span class="relationship-line">1 ───────── many</span><code>movieId</code><span>Review</span></div>
+  <div class="schema-grid">
+    <% schemas.forEach(schema => { %>
+    <section class="card schema-card"><div class="panel-heading"><h2><%= schema.name %></h2><code><%= schema.collection %></code></div><p><%= schema.description %></p><div class="table-scroll"><table><caption class="sr-only"><%= schema.name %> field definitions</caption><thead><tr><th scope="col">Field</th><th scope="col">Type</th><th scope="col">Rules</th></tr></thead><tbody><% schema.fields.forEach(field => { %><tr><th scope="row"><code><%= field.name %></code></th><td><span class="type-badge"><%= field.type %></span></td><td><%= field.notes %></td></tr><% }) %></tbody></table></div></section>
+    <% }) %>
+  </div>
+  <section id="reference" class="card api-reference"><div class="panel-heading"><h2>API reference</h2><span class="small-label">HTTP + JSON</span></div><p>This is a general resource reference. Choose the operation that fits your challenge.</p><div class="table-scroll"><table><caption class="sr-only">Available REST endpoints</caption><thead><tr><th scope="col">Method</th><th scope="col">Path</th><th scope="col">Behavior</th></tr></thead><tbody>
+    <tr><td><code>GET</code></td><td><code>/api/movies</code></td><td>List movies. Optional filters and sorting are described below.</td></tr>
+    <tr><td><code>GET</code></td><td><code>/api/movies/:id</code></td><td>Read one movie; missing movies return 404.</td></tr>
+    <tr><td><code>POST</code></td><td><code>/api/movies</code></td><td>Create a movie with all editable movie fields. Returns 201 and a Location header.</td></tr>
+    <tr><td><code>PATCH</code></td><td><code>/api/movies/:id</code></td><td>Update one or more editable fields. Returns the updated movie.</td></tr>
+    <tr><td><code>DELETE</code></td><td><code>/api/movies/:id</code></td><td>Delete a movie and its reviews. Returns 204 with no body.</td></tr>
+    <tr><td><code>GET</code></td><td><code>/api/movies/:id/reviews</code></td><td>Read reviews associated with a movie.</td></tr>
+    <tr><td><code>POST</code></td><td><code>/api/movies/:id/reviews</code></td><td>Create a review with author, score and comment. The route supplies movieId.</td></tr>
+    <tr><td><code>GET</code></td><td><code>/api/reviews</code></td><td>List reviews, optionally filtered and sorted.</td></tr>
+    <tr><td><code>GET</code></td><td><code>/api/reviews/:id</code></td><td>Read one review.</td></tr>
+    <tr><td><code>PUT</code></td><td><code>/api/reviews/:id</code></td><td>Replace all three editable review fields. ID and movie relationship are preserved.</td></tr>
+    <tr><td><code>DELETE</code></td><td><code>/api/reviews/:id</code></td><td>Delete a review. Returns 204 with no body.</td></tr>
+  </tbody></table></div>
+  <div class="reference-notes"><section><h3>Movie query parameters</h3><dl><dt>genre</dt><dd>Exact genre name, case-insensitive.</dd><dt>minYear</dt><dd>Earliest release year, inclusive (1888–2100).</dd><dt>search</dt><dd>Case-insensitive substring of the movie title.</dd><dt>sort</dt><dd><code>rating_desc</code>, <code>rating_asc</code>, <code>year_desc</code>, <code>year_asc</code>, <code>title_asc</code>.</dd></dl></section><section><h3>Review query parameters</h3><dl><dt>minScore</dt><dd>Minimum review score, inclusive (integer 1–5).</dd><dt>sort</dt><dd><code>score_desc</code> or <code>score_asc</code>.</dd></dl><p>Combine parameters as needed. Their order does not matter. Unknown, repeated or invalid collection parameters return 400.</p><h3>Request bodies</h3><p>Send JSON with <code>Content-Type: application/json</code>. IDs and relationships are read-only. Unknown fields are rejected.</p></section></div>
+  </section>
+  <section class="notice"><strong>A temporary catalog, by design.</strong> No database is used. Changes live in server memory until a restart or game reset. Browser progress is stored separately in localStorage; reset the game after a server restart to begin a consistent new run.</section>
+</main>
+<%- include('partials/footer') %>
